@@ -6,5 +6,12 @@ if (EXISTS "${CMAKE_SOURCE_DIR}/cmake")
   set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
 endif ()
 
-add_subdirectory(ext/pybind11)
+find_package(pybind11 REQUIRED)
+find_package(Eigen3 REQUIRED)
+find_package(PoseLib REQUIRED)
+
+include_directories(${EIGEN3_INCLUDE_DIR}
+                    ${POSELIB_INCLUDE_DIR}
+)
 add_subdirectory (examples)
+install(DIRECTORY RansacLib DESTINATION include)
